@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Sewn — UCSB Campus Clothing Repair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --sun: #D4882A;
+      --sun-light: #FAE8CC;
+      --warm: #3D2B1A;
+      --cream: #FDF6EE;
+      --muted: #7A6251;
+      --stitch: #BFA080;
+      --border: #E2D5C4;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--warm);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--warm);
+      color: var(--cream);
+      padding: 4rem 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: #4D3B28;
+      opacity: .5;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: 40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: #5A3E25;
+      opacity: .4;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+    }
+    .logo span { color: var(--sun); font-style: italic; }
+    .tagline {
+      font-size: .85rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--stitch);
+      margin-top: .35rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-top: 2rem;
+      line-height: 1.65;
+      max-width: 480px;
+      color: #E8D9C8;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-btns {
+      display: flex;
+      gap: .85rem;
+      margin-top: 1.8rem;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--sun);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 500;
+      padding: .75rem 1.75rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .btn-primary:hover { opacity: .88; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--stitch);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      padding: .75rem 1.75rem;
+      border-radius: 30px;
+      border: 1px solid var(--stitch);
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .btn-ghost:hover { background: rgba(191,160,128,.15); color: #E8D9C8; }
+    .thread-line {
+      border: none;
+      border-top: 1.5px dashed var(--stitch);
+      opacity: .4;
+      margin: 2.5rem 0 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      gap: .5rem;
+      padding: 1rem 3rem;
+      border-bottom: .5px solid var(--border);
+      background: var(--cream);
+      flex-wrap: wrap;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: .4rem .9rem;
+      border-radius: 20px;
+      transition: background .2s, color .2s;
+    }
+    nav a:hover { background: var(--sun-light); color: var(--sun); }
+    nav a.nav-cta {
+      background: var(--sun-light);
+      color: #7A4F1A;
+      font-weight: 500;
+      margin-left: auto;
+    }
+
+    /* ── Sections ── */
+    section { padding: 3rem; }
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sun);
+      font-weight: 500;
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      line-height: 1.3;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── Services ── */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 1rem;
+    }
+    @media (max-width: 520px) {
+      .services { grid-template-columns: 1fr; }
+    }
+    .service-card {
+      background: #fff;
+      border: .5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+      transition: transform .2s, border-color .2s;
+    }
+    .service-card:hover { transform: translateY(-4px); border-color: var(--sun); }
+    .service-icon { font-size: 1.8rem; margin-bottom: .7rem; }
+    .service-name { font-size: .95rem; font-weight: 500; }
+    .service-price { font-size: .82rem; color: var(--sun); margin-top: .35rem; font-weight: 500; }
+
+    /* ── Badges ── */
+    .badge-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.6rem; }
+    .badge {
+      background: var(--sun-light);
+      color: #7A4F1A;
+      font-size: .78rem;
+      padding: .38rem .9rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: .5px;
+      background: linear-gradient(90deg, transparent, #D4B896, transparent);
+      margin: 0 3rem;
+    }
+
+    /* ── How it works ── */
+    .how-bg { background: #fff; }
+    .steps { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.2rem; }
+    .step { display: flex; align-items: flex-start; gap: 1rem; }
+    .step-num {
+      width: 30px; height: 30px; min-width: 30px;
+      border-radius: 50%;
+      background: var(--sun-light);
+      color: var(--sun);
+      font-weight: 500;
+      font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .step-text strong { display: block; font-size: .95rem; font-weight: 500; margin-bottom: .25rem; }
+    .step-text span { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--warm);
+      color: var(--cream);
+      padding: 3.5rem 3rem;
+      text-align: center;
+    }
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      color: var(--cream);
+      margin-bottom: .8rem;
+    }
+    .cta-sub { font-size: .9rem; color: var(--stitch); margin-bottom: 1.8rem; line-height: 1.7; }
+    .cta-note { font-size: .75rem; color: var(--stitch); margin-top: .85rem; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: .5px solid var(--border);
+      font-size: .78rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="logo">Sun <span>Sewn</span></div>
+    <div class="tagline">UCSB Campus Clothing Repair</div>
+    <p class="hero-text">Your favorite hoodie deserves a second life. We repair rips, tears &amp; worn seams so your clothes keep going.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://forms.gle/gaHG58TqCDgWtVwQ6" target="_blank" rel="noopener">Book a repair →</a>
+      <a class="btn-ghost" href="https://forms.gle/gaHG58TqCDgWtVwQ6" target="_blank" rel="noopener">View our form</a>
+    </div>
+    <hr class="thread-line" />
+  </header>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#services">Pricing</a>
+    <a href="#how-it-works">Drop-off</a>
+    <a href="https://forms.gle/gaHG58TqCDgWtVwQ6" target="_blank" rel="noopener" class="nav-cta">Book now ↗</a>
+  </nav>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="section-label">What we fix</div>
+    <div class="section-title">Repair, don't replace</div>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-icon">👕</div>
+        <div class="service-name">T-shirts</div>
+        <div class="service-price">From $4</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧥</div>
+        <div class="service-name">Sweaters</div>
+        <div class="service-price">From $6</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🫶</div>
+        <div class="service-name">Hoodies</div>
+        <div class="service-price">From $6</div>
+      </div>
+    </div>
+    <div class="badge-row">
+      <span class="badge">Rips &amp; tears</span>
+      <span class="badge">Worn seams</span>
+      <span class="badge">Pocket holes</span>
+      <span class="badge">Zipper fixes</span>
+      <span class="badge">Hem repairs</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="how-bg">
+    <div class="section-label">Process</div>
+    <div class="section-title">Three easy steps</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Fill out the form</strong>
+          <span>Tell us what needs fixing using our Google Form — takes about a minute.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Drop it off on campus</strong>
+          <span>Leave your item at our drop box in the UCen. No appointment needed.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Pick it up, good as new</strong>
+          <span>We'll text you when it's ready — usually within 48 hrs. Pay on pickup.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-title">Ready to save your favorite fit?</div>
+    <p class="cta-sub">Student-run. Eco-friendly. Right here on campus at UCSB.</p>
+    <a class="btn-primary" href="https://forms.gle/gaHG58TqCDgWtVwQ6" target="_blank" rel="noopener">Fill out the repair form →</a>
+    <p class="cta-note">Drop-off available Mon–Fri &nbsp;·&nbsp; Questions? DM us @sunsewn.ucsb</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2026 Sun Sewn · UCSB</span>
+    <span>@sunsewn.ucsb</span>
+  </footer>
+
+</body>
+</html>
